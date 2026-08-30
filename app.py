@@ -288,3 +288,23 @@ with tab2:
                 st.write(f"- **Accuracy:** {accuracy}%")
             else:
                 st.error("Please type something first!")
+                # === CUSTOM FOOTER ===
+footer = """
+<style>
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: transparent;
+    text-align: center;
+    padding: 10px;
+    font-size: 15px;
+    color: #a0a0a0;
+}
+</style>
+<div class="footer">
+  <p>Developed with 💻 & ❤️ by <b>03079078917 Muzammal</b></p>
+</div>
+"""
+st.markdown(footer, unsafe_allow_html=True)
