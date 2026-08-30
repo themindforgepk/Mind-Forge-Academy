@@ -288,7 +288,7 @@ with tab2:
                 st.write(f"- **Accuracy:** {accuracy}%")
             else:
                 st.error("Please type something first!")
-                # === CUSTOM FOOTER ===
+             # === CUSTOM FOOTER ===
 footer = """
 <style>
 .footer {
@@ -304,7 +304,7 @@ footer = """
 }
 </style>
 <div class="footer">
-  <p>Developed with 💻 & ❤️ by <b>03079078917 Muzammal</b></p>
+  <p>Developed by <b>Hafiz Muzammil</b> | 03079078917</p>
 </div>
 """
 st.markdown(footer, unsafe_allow_html=True)
