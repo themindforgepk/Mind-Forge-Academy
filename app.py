@@ -13,7 +13,14 @@ MERA_MODEL = "gemini-3.1-flash-lite"
 
 genai.configure(api_key=MERI_API_KEY)
 st.set_page_config(page_title="Mind Forge Academy", page_icon="🎓", layout="wide")
-
+# === HIDE STREAMLIT MENU & FOOTER ===
+hide_menu_style = """
+    <style>
+    header {visibility: hidden;}
+    footer {visibility: hidden;}
+    </style>
+    """
+st.markdown(hide_menu_style, unsafe_allow_html=True)
 # === VIP AESTHETIC DESIGN ===
 modern_design = """
 <style>
