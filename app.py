@@ -288,23 +288,44 @@ with tab2:
                 st.write(f"- **Accuracy:** {accuracy}%")
             else:
                 st.error("Please type something first!")
-             # === CUSTOM FOOTER ===
+            # === VIP AESTHETIC FOOTER ===
 footer = """
 <style>
-.footer {
+.aesthetic-footer {
     position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: transparent;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(30, 34, 45, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 10px 25px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     text-align: center;
-    padding: 10px;
-    font-size: 15px;
-    color: #a0a0a0;
+    z-index: 999;
+    transition: all 0.3s ease;
+}
+.aesthetic-footer:hover {
+    background: rgba(40, 45, 60, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(77, 166, 255, 0.2);
+}
+.aesthetic-footer p {
+    margin: 0;
+    font-size: 14px;
+    color: #e2e8f0;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.5px;
+}
+.aesthetic-footer span {
+    color: #4da6ff;
+    font-weight: 600;
 }
 </style>
-<div class="footer">
-  <p>Developed by <b>Hafiz Muzammil</b> | 03079078917</p>
+<div class="aesthetic-footer">
+  <p>Developed by <span>Hafiz Muzammil</span> | 03079078917</p>
 </div>
 """
 st.markdown(footer, unsafe_allow_html=True)
