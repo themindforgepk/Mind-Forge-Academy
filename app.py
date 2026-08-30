@@ -7,7 +7,7 @@ import streamlit.components.v1 as components
 # ==========================================
 # 🛑 SETTINGS 🛑
 # ==========================================
-MERI_API_KEY = "YAHAN_APNI_API_KEY_PASTE_KAREIN"
+MERI_API_KEY = st.secrets["MERI_API_KEY"]
 MERA_MODEL = "gemini-3.1-flash-lite"  
 # ==========================================
 
