@@ -27,17 +27,19 @@ st.set_page_config(page_title="Mind Forge Academy", page_icon="🎓", layout="wi
 # === VIP AESTHETIC DESIGN ===
 # (Yahan pehle se jo aesthetic code likha hai, uske bilkul neechay yeh naya Background code paste kar dein):
 
+# --- VIP BACKGROUND IMAGE ---
 page_bg_img = '''
 <style>
-.stApp {
-    background-image: linear-gradient(rgba(15, 20, 30, 0.8), rgba(15, 20, 30, 0.8)), url("https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=2000&q=80");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+[data-testid="stAppViewContainer"] {
+    background-image: linear-gradient(rgba(15, 20, 30, 0.8), rgba(15, 20, 30, 0.8)), url("https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=2000&q=80") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
 }
 </style>
 '''
+st.markdown(page_bg_img, unsafe_allow_html=True)
 st.markdown(page_bg_img, unsafe_allow_html=True)
 modern_design = """
 <style>
