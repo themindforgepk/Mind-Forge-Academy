@@ -22,6 +22,23 @@ hide_menu_style = """
     """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 # === VIP AESTHETIC DESIGN ===
+st.set_page_config(page_title="Mind Forge Academy", page_icon="🎓", layout="wide")
+
+# === VIP AESTHETIC DESIGN ===
+# (Yahan pehle se jo aesthetic code likha hai, uske bilkul neechay yeh naya Background code paste kar dein):
+
+page_bg_img = '''
+<style>
+.stApp {
+    background-image: linear-gradient(rgba(15, 20, 30, 0.8), rgba(15, 20, 30, 0.8)), url("https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=2000&q=80");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+</style>
+'''
+st.markdown(page_bg_img, unsafe_allow_html=True)
 modern_design = """
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
@@ -241,24 +258,57 @@ with tab2:
                 st.error(f"Error: {e}")
 
     if st.session_state.typing_text:
-        st.markdown(f"""
-        <div style="background-color: rgba(0, 0, 0, 0.3); padding: 25px; border-radius: 12px; border: 2px solid #1CB5E0; font-size: 22px; color: #ffffff; letter-spacing: 1px; line-height: 1.6; margin-bottom: 15px;">
-        {st.session_state.typing_text}
-        </div>
-        """, unsafe_allow_html=True)
-        
-        components.html("""
-        <div style="font-family: 'Poppins', sans-serif; color: #1CB5E0; font-size: 18px; font-weight: bold; text-align: right; padding-right: 10px;">
-            ⏱️ Timer: <span id="clock">0</span> Seconds
-        </div>
-        <script>
-            let sec = 0;
-            setInterval(() => {
-                sec++;
-                document.getElementById('clock').innerText = sec;
-            }, 1000);
-        </script>
-        """, height=35)
+            custom_typing_html = f"""
+            <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; color: white; font-family: 'Poppins', sans-serif; margin-top: 20px;">
+                <h4 style="color: #4da6ff;">Type the paragraph below (30 WPM Target):</h4>
+                <p style="font-size: 18px; color: #e2e8f0; background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px;">{st.session_state.typing_text}</p>
+                
+                <textarea id="typingBox" placeholder="Start typing here... Timer will start automatically!" style="width: 100%; height: 120px; font-size: 16px; padding: 15px; border-radius: 8px; margin-top: 10px; background: rgba(255,255,255,0.9); color: #000; border: none;"></textarea>
+                
+                <div style="margin-top: 20px; font-size: 22px; font-weight: bold; display: flex; justify-content: space-between;">
+                    <span>⏱ Time: <span id="timer" style="color: #ff4d4d;">00:00</span></span>
+                    <span>⌨️ WPM: <span id="wpm" style="color: #00e676;">0</span></span>
+                </div>
+            </div>
+
+            <script>
+                let timer = document.getElementById("timer");
+                let wpmDisplay = document.getElementById("wpm");
+                let typingBox = document.getElementById("typingBox");
+                
+                let time = 0;
+                let timerInterval = null;
+                let idleTimeout = null;
+                let isRunning = false;
+
+                function updateTime() {{
+                    time++;
+                    let m = Math.floor(time / 60).toString().padStart(2, '0');
+                    let s = (time % 60).toString().padStart(2, '0');
+                    timer.innerText = m + ":" + s;
+                    
+                    let textEntered = typingBox.value.trim();
+                    let words = textEntered === "" ? 0 : textEntered.split(/\s+/).length;
+                    let minutes = time / 60;
+                    let wpm = minutes > 0 ? Math.round(words / minutes) : 0;
+                    wpmDisplay.innerText = wpm;
+                }}
+
+                typingBox.addEventListener('input', () => {{
+                    if (!isRunning) {{
+                        timerInterval = setInterval(updateTime, 1000);
+                        isRunning = true;
+                    }}
+                    clearTimeout(idleTimeout);
+                    idleTimeout = setTimeout(() => {{
+                        clearInterval(timerInterval);
+                        isRunning = false;
+                    }}, 3000);
+                }});
+            </script>
+            """
+            
+            components.html(custom_typing_html, height=450)
         
         user_typing = st.text_area("Start typing exactly as above:", height=150, placeholder="Timer has started! Start typing here...")
         
