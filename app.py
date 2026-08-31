@@ -309,35 +309,7 @@ with tab2:
             """
             
             components.html(custom_typing_html, height=450)
-        
-        user_typing = st.text_area("Start typing exactly as above:", height=150, placeholder="Timer has started! Start typing here...")
-        
-        if st.button("Check My Speed"):
-            if user_typing:
-                end_time = time.time()
-                time_taken = end_time - st.session_state.start_time
-                minutes = time_taken / 60
                 
-                typed_words = len(user_typing.split())
-                wpm = round(typed_words / minutes)
-                
-                original_words = st.session_state.typing_text.split()
-                user_words = user_typing.split()
-                correct_words = sum(1 for o, u in zip(original_words, user_words) if o == u)
-                accuracy = round((correct_words / max(len(original_words), 1)) * 100)
-                
-                st.write("---")
-                st.subheader("📊 Performance Report")
-                
-                if wpm >= 30:
-                    st.success(f"🔥 Outstanding! Speed: **{wpm} WPM**. You passed the clerical requirement!")
-                else:
-                    st.warning(f"⚠️ Speed: **{wpm} WPM**. You need a bit more practice to hit 30 WPM.")
-                    
-                st.write(f"- **Total Time Taken:** {round(time_taken)} seconds")
-                st.write(f"- **Accuracy:** {accuracy}%")
-            else:
-                st.error("Please type something first!")
             # === VIP AESTHETIC FOOTER ===
 footer = """
 <style>
